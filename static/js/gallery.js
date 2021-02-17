@@ -4,21 +4,9 @@ window.addEventListener('load', function() {
 
 	const gallery = document.getElementById('gallery');
 	const progress = document.getElementById('progress');
-
-	const pauseBtn = document.getElementById('pause');
-	const resumeBtn = document.getElementById('resume');
-	const nextBtn = document.getElementById('next');
-	const prevBtn = document.getElementById('previous');
-	const loading = document.getElementById('loading');
-
+	const loading = document.getElementById('gallery-loading');
 	const storedNoun = localStorage.getItem('noun');
 	const storedPrefix = localStorage.getItem('prefix');
-
-	//  check to see if previous url is stored in local host before adding previous button
-	if (storedPrefix && storedNoun && isWordGallery &&
-		storedPrefix != prefix && storedNoun != noun) {
-		prevBtn.style.display = 'inline-block';
-	}
 
 	// recursively get text on screen to set timer length
 	function getText(element) {
@@ -30,63 +18,46 @@ window.addEventListener('load', function() {
 			}
 		}
 	}
-
-
 	let text = '';
 	getText(gallery);
-	let time = text.split(' ').length * 0.3 * 1000;
-	let start = performance.now();
-	let timing = false; // startSlideshow; // if true this counts down and updates the timiing
-	let offset = 0;
 
-	if (!startSlideshow) {
-		document.getElementById('slideshow').onclick = function() {
-			start = performance.now();
-			timing = true;
-			this.remove();
-		};
-	}
+	window.Gallery = {
+		text: text,
+		time: text.split(' ').length * 0.3 * 1000,
+		start: performance.now(),
+		timing: startSlideshow, // if true this counts down and updates the timiing
+		offset: 0,
+	};
 
-	function loadNextWord(reload) {
+	Gallery.loadNextWord = function(reload) {
 		progress.style.background = 'transparent';
 		loading.style.display = 'block';
-			localStorage.setItem('prefix', prefix);
-			localStorage.setItem('noun', noun);
-		fetch('/random_gallery_word')
-			.then(response => { return response.json(); })
-			.then(json => {
-				const url = `${location.origin}/gallery/word/${json[0]}/${json[1]}`;
-				window.open(url, '_self');
-			});
-	}
-
-	const color = document.getElementsByClassName('new-word')[0].style.color;
+		localStorage.setItem('prefix', prefix);
+		localStorage.setItem('noun', noun);
+		if (isEmbedded) {
+			const url = `${location.origin}/embed`;
+			window.open(url, '_self');
+		} else {
+			fetch('/random_gallery_word')
+				.then(response => { return response.json(); })
+				.then(json => {
+					const url = `${location.origin}/gallery/word/${json[0]}/${json[1]}`;
+					window.open(url, '_self');
+				});
+		}
+	};
 
 	var wordInterval = setInterval(function() {
-		if (timing) {
-			if (performance.now() > start + time) {
+		const color = document.getElementsByClassName('new-word')[0].style.color;
+		if (Gallery.timing) {
+			if (performance.now() > Gallery.start + Gallery.time) {
 				clearInterval(wordInterval);
-				loadNextWord(true);
+				Gallery.loadNextWord(true);
 			} else {
-				const pct =  100 - (performance.now() - start) / time * 100;
+				const pct =  100 - (performance.now() - Gallery.start) / Gallery.time * 100;
 				progress.style.background = `linear-gradient(90deg, ${color} ${pct - 2}%, transparent ${pct + 2}%`;
 			}
 		}
 	}, 1000 / 60);
 
-	pauseBtn.onclick = function() {
-		timing = false;
-		offset = performance.now() - start;
-	};
-
-	resumeBtn.onclick = function() {
-		timing = true;
-		start = performance.now() - offset;
-	};
-
-	prevBtn.onclick = function() {
-		location.href = `${location.origin}/gallery/word/${storedNoun}/${storedPrefix}`;
-	};
-
-	nextBtn.onclick = loadNextWord;
 });

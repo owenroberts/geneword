@@ -12,13 +12,20 @@
 
 <body>
 	<div id="container">
-		<div id="ayin-logo">
-			<a href="https://ayinpress.org/projects/"><img src="{{ url_for('static', filename='Ayin_Logo_Black_70.png') }}" alt="ayin-logo"></a>
-		</div>
-		<div id="content">
+		{% block nav %}
+		<nav>
+			<div id="ayin-logo">
+				<a href="https://ayinpress.org/projects/"><img src="{{ url_for('static', filename='Ayin_Logo_Black_70.png') }}" alt="ayin-logo"></a>
+			</div>
 			{% block index1 %}
-				<h1 id="title"><a href="/">Geneword: Index 1</a></h1>
+				<!-- <h1 id="title"><a href="/">Geneword: Index 1</a></h1> -->
+				<h1 id="title">Geneword: Index 1</h1>
+				{% include "geneword-nav.html" %}
 			{% endblock %}
+		</nav>
+		{% endblock %}
+		<div id="content">
+			
 			{% block content %}
 			<!-- content goes here -->
 			{% endblock %}

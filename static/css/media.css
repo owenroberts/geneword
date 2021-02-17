@@ -46,8 +46,8 @@
 
 
 
-@media (min-width: 960px) { /* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (min-width: 840px) { /* tablet, landscape iPad, lo-res laptops ands desktops */
 	#container	{
-		max-width: 960px;
+		max-width: 840px;
 	}
 }

@@ -47,14 +47,14 @@ a:hover {
 ul { 
 	list-style: none; 
 	padding: 0; 
-	margin-left: 8px; 
+	margin: 0; 
 }
 
-li:before { 
+/*li:before { 
 	content: "—"; 
 	position:relative; 
 	left: -6px;
-}
+}*/
 
 button, label, input {
 	font: inherit;

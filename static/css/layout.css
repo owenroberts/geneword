@@ -6,12 +6,20 @@
 	padding: 0;
 
 	display: grid;
-	grid-template-columns: 180px 1fr;
+	grid-template-columns: 260px 1fr;
 
 }
 
 #content {
 	margin-top: 0;
+}
+
+nav h1 {
+	margin-bottom: 0;
+}
+
+nav #ayin-logo {
+	/*padding-left: 2em;*/
 }
 
 #nouns, #prefixes, .prefix, #words, .column {
