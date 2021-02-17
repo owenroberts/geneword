@@ -44,17 +44,21 @@ a:hover {
 	color: var(--highlight-color); 
 }
 
-ul { 
+ul {
 	list-style: none; 
 	padding: 0; 
-	margin: 0; 
+	margin: 0;
 }
 
-/*li:before { 
+ul.gallery-defs { 
+	margin-left: 8px; 
+}
+
+ul.gallery-defs li:before { 
 	content: "—"; 
 	position:relative; 
 	left: -6px;
-}*/
+}
 
 button, label, input {
 	font: inherit;
