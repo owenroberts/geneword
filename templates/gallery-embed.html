@@ -13,6 +13,7 @@
 
 <div id="gallery" class="gallery-word">
 	<p><a id="word" class="new-word" href="#">{{ prefix }}{{ noun }}</a></p>
+	<div id="progress"></div>
 	<p id="prefix-def">{{ prefix_def }}</p>
 	<p>+</p>
 	<ul id="noun-defs">
@@ -22,7 +23,7 @@
 	</ul>
 </div>
 
-<div id="progress"></div>
+
 <script>
 	const isWordGallery = true;
 	const prefix = '{{ prefix }}';
