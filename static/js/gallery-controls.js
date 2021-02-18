@@ -33,12 +33,7 @@ window.addEventListener('load', function() {
 	};
 
 	prevBtn.onclick = function() {
-		// location.href = `${location.origin}/gallery/word/${storedNoun}/${storedPrefix}`;
-		Gallery.update({
-			noun: storedNoun,
-			prefix: storedPrefix,
-			
-		});
+		location.href = `${location.origin}/gallery/word/${storedNoun}/${storedPrefix}`;
 	};
 
 	nextBtn.onclick = Gallery.loadNextWord;
