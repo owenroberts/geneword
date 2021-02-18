@@ -1,5 +1,9 @@
 window.addEventListener('load', function() {
 
+	function getRandomInt(min, max) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+
 	window.GalleryColor = {
 		update: function() {
 			Array.from(document.getElementsByClassName('new-word')).forEach(element => {

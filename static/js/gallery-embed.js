@@ -17,7 +17,7 @@ window.addEventListener('load', function() {
 	Gallery.loadNextWord = function() {
 		progress.style.background = 'transparent';
 		loading.style.display = 'block';
-		fetch(`${location.origin}/random_embed`)
+		fetch(`https://indexi.herokuapp.com/random_embed`)
 			.then(response => { return response.json(); })
 			.then(json => {
 				Gallery.update(json);
