@@ -136,7 +136,7 @@ def random_embed():
 	noun, prefix = gen.random_gallery_word()
 	defs = gen.get_noun_defs(noun)
 	prefix_def = gen.get_prefix_def(prefix)
-	return jsonify({ noun: noun, prefix: prefix, defs: defs, prefix_def: prefix_def })
+	return jsonify({ "noun": noun, "prefix": prefix, "defs": defs, "prefix_def": prefix_def })
 
 @app.route('/embed')
 def embed():
