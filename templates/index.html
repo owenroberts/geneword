@@ -9,15 +9,6 @@
 	<li><a href="/geneword-about">About Geneword</a></li>
 </ul>
 
-<script>
-	const links = document.getElementsByClassName('load');
-	Array.from(links).forEach(link => {
-		link.onclick = function() {
-			document.getElementById('loading').style.display = 'block';
-		};
-	});
-</script>
-
 <p id="loading" style="display:none;">Loading...</p>
 {% endblock %}
 

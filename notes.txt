@@ -1,3 +1,8 @@
+7.26.2021
+- siteground migration
+- sg pw b2b@1&81$25r
+- 
+
 flask tut: http://rwet.decontextualize.com/book/web-applications/
 
 Alphabetical list of part-of-speech tags used in the Penn Treebank Project:
