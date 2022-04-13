@@ -6,14 +6,19 @@
 
 import tweepy, time
 import requests, json
+import tinyurl.tinyurl
+import os
+
+from dotenv import load_dotenv
 from random import randint
 
-import tinyurl
+load_dotenv()
 
-CONSUMER_KEY = 'kAkybroMhUSsSUw8U34Ni4aMQ'
-CONSUMER_SECRET = 'D4Glo4z7tzXM35Pk1NOSq0Wab6SFMgKM6RPXAWcTIYOsFvg7s1'
-ACCESS_KEY = '803460332660334592-upGctFdETpHWwte82tzAEMSoaCxnB8Z'
-ACCESS_SECRET = 'XqZDKQl6jisnwtzQs6fjPxnuQJu6UOJ0NywyyvLPpL40J'
+CONSUMER_KEY = os.environ.get('CONSUMER_KEY')
+CONSUMER_SECRET = os.environ.get('CONSUMER_SECRET')
+ACCESS_KEY = os.environ.get('ACCESS_KEY')
+ACCESS_SECRET = os.environ.get('ACCESS_SECRET')
+
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
@@ -23,38 +28,44 @@ f = filename.readlines()
 filename.close()
 r = randint(0,len(f))
 
-n = open('list.txt', 'w')
-u = open('used.txt', 'a')
+current_list = open('list.txt', 'w')
+used_list = open('used.txt', 'a')
 
 num = len(f)
 
+word = ''
+url = ''
+tweet_text = ''
+
+# get a random line and then rewrite the list.txt
 if num > 0:
 	for index, line in enumerate(f):
 		if index == r:
 			word = line.split(" ")[0]
 			url = line.split(" ")[1]
-			
-			# google shortener
-			# headers = {'content-type': 'application/json'}
-			# payload = {"longUrl": url}
-			# google = "https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyDBZBVHLGKYGVXZJDCg-jQbsqDlOjf5dZE"
-			# r = requests.post(google, data=json.dumps(payload), headers=headers)
-			# link = json.loads(r.text)['id']
-			
+
 			# tinyurl  shortener
 			link = tinyurl.create_one(url)
 
 			if num % 7 == 0:
-				msg = str(num) + " tweets, " + str(num/7) + " weeks, " + str(num/365) + " years to go" 
-				api.update_status(word + '\n' + link  + '\n' + msg)
-				u.write( word + ' ' + link  + ' ' + msg + '\n' )
+				msg = str(num) + " tweets, " + str(num/7) + " weeks, " + str(num/365) + " years to go"
+				tweet_text = word + '\n' + link  + '\n' + msg
+				used_list.write( word + ' ' + link  + ' ' + msg + '\n')
 			else:
-				api.update_status(word + '\n' + link )
-				u.write(  word + ' ' + link + '\n' )
-		else:
-			n.write(line)
-else:
-	api.update_status("That's it :)")
+				tweet_text = word + '\n' + link
+				used_list.write(word + ' ' + link + '\n')
 
-n.close()
-u.close()
+		else:
+			current_list.write(line)
+else:
+	tweet_text = "That's it :)"
+
+used_list.close()
+used_list.close()
+
+
+print(tweet_text)
+try:
+	api.update_status(tweet_text)
+except tweepy.TweepError as e:
+	print("Tweepy Error: {}".format(e))

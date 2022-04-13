@@ -1,3 +1,6 @@
+4.13.2022
+	- downloading tinyurl bc package is deprecated ...
+
 7.26.2021
 - siteground migration
 - sg pw b2b@1&81$25r
