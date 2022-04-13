@@ -5,7 +5,6 @@ doc/
 zine/
 zine.*
 *.pyc
-bot/
 server.crt
 server.key
 *.gdoc
