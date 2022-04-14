@@ -12,7 +12,7 @@ for noun in nouns:
 	p = random.choice(prefixes).strip()
 	href = url + noun.strip() + "/" + p
 	line = p + noun.strip() + " " + href
-	print line
+	print(line)
 	f.write(line)
 	f.write('\n')
 f.close()

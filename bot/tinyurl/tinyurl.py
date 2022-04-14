@@ -1,4 +1,8 @@
-"""A really tiny interface to ``tinyurl.com``."""
+"""A really tiny interface to ``tinyurl.com``.
+    copied this deprecated library directly into project -- 4.13.2022
+    https://web.archive.org/web/20090507093154/http://meatballhat.com/projects/TinyUrl
+    original info: METADATA.txt
+"""
 
 import sys
 import urllib

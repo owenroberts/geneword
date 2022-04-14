@@ -6,7 +6,7 @@ import geneword
 app = Flask(__name__)
 gen = geneword.Geneword()
 
-bug = True
+debug = os.environ.get('debug')
 
 if "DYNO" in os.environ:
 	# Always use SSL if the app is running on Heroku (not locally)
@@ -360,4 +360,4 @@ def handle_500(e):
 	
 
 if __name__ == '__main__':
-	app.run(debug=bug)
+	app.run(debug=debug)

@@ -63,8 +63,6 @@ else:
 used_list.close()
 used_list.close()
 
-
-print(tweet_text)
 try:
 	api.update_status(tweet_text)
 except tweepy.TweepError as e:
