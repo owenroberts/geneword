@@ -10,7 +10,6 @@ import img
 from dotenv import load_dotenv
 from random import randint
 
-
 load_dotenv()
 
 CONSUMER_KEY = os.environ.get('CONSUMER_KEY')
