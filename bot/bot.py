@@ -1,9 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# google api AIzaSyDBZBVHLGKYGVXZJDCg-jQbsqDlOjf5dZE
-# tinyurl api 0799849963HI948658B
-
 import tweepy, time
 import requests, json
 import tinyurl.tinyurl
