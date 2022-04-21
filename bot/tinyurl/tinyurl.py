@@ -32,8 +32,8 @@ def _build_option_parser():
 
 
 def create_one(url):
-    url_data = urllib.urlencode(dict(url=url))
-    ret = urllib.urlopen(API_CREATE, data=url_data).read().strip()
+    url_data = urllib.parse.urlencode(dict(url=url)).encode("utf-8")
+    ret = urllib.request.urlopen(API_CREATE, data=url_data).read().strip()
     return ret
 
 
