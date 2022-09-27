@@ -360,4 +360,4 @@ def handle_500(e):
 	
 
 if __name__ == '__main__':
-	app.run(debug=debug)
+	app.run(debug=debug, host='0.0.0.0', ssl_context=('cert.pem', 'key.pem'))

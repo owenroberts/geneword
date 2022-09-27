@@ -17,3 +17,4 @@ notes.txt
 bot/list.txt
 bot/badwords.json
 bot/ig/
+*.pem
