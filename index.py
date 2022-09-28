@@ -3,14 +3,10 @@ from flask_sslify import SSLify
 import os
 import geneword
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='')
 gen = geneword.Geneword()
 
 debug = os.environ.get('debug')
-
-if "DYNO" in os.environ:
-	# Always use SSL if the app is running on Heroku (not locally)
-    sslify = SSLify(app, subdomains=True)
 
 @app.route('/')
 def index():
@@ -360,4 +356,5 @@ def handle_500(e):
 	
 
 if __name__ == '__main__':
-	app.run(debug=debug, host='0.0.0.0', ssl_context=('cert.pem', 'key.pem'))
+	app.run(debug=debug, port='5001')
+	# app.run(debug=debug, host='0.0.0.0', ssl_context=('cert.pem', 'key.pem'))

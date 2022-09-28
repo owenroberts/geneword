@@ -1,0 +1,1 @@
+User-Agent: Googlebot Disallow: /gallery/ Googlebot Disallow: /word/ Googlebot Disallow: /text/
