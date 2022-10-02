@@ -18,3 +18,4 @@ bot/list.txt
 bot/badwords.json
 bot/ig/
 *.pem
+bot/*.txt

@@ -10,6 +10,8 @@ import img
 from dotenv import load_dotenv
 from random import randint
 
+cwd = os.getcwd()
+
 load_dotenv()
 
 CONSUMER_KEY = os.environ.get('CONSUMER_KEY')
@@ -21,13 +23,13 @@ auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
 
-filename = open('bot/list.txt', 'r')
+filename = open(cwd + '/bot/list.txt', 'r')
 f = filename.readlines()
 filename.close()
 r = randint(0,len(f))
 
-current_list = open('bot/list.txt', 'w')
-used_list = open('bot/used.txt', 'a')
+current_list = open(cwd + '/bot/list.txt', 'w')
+used_list = open(cwd + '/bot/used.txt', 'a')
 
 num = len(f)
 
