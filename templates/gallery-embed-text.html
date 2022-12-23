@@ -1,0 +1,47 @@
+<!-- gallery-text.html -->
+{% extends "layout.html" %}
+{% block nav %}{% endblock %}
+
+{% block content %}
+{% block index1 %}{% endblock %}
+<style>
+	#container {
+		display: block;
+		max-width: 100% !important;
+	}
+</style>
+
+{% if show_back_btn == true %} 
+	<a id="referer" href="/ayin_text">back</a> 
+{% endif %}
+
+<div id="gallery" class="gallery-text">
+	<div class="text">
+		{% for line in new_text  %}
+			<p> {{ line|safe }} </p>
+		{% endfor %}
+	</div>
+</div>
+
+<div id="controls">
+	<button id="refresh">Refresh</button>
+	<button id="share-button">Share</button>
+	<button id="download">Download Image</button>
+</div>
+
+<script type="text/javascript">
+	const title = "{{ title }}";
+</script>
+{% include "share.html" %}
+
+<div id="loading" style="display:none">
+	<p>Loading...</p>
+</div>
+
+{% block script %}
+<script type="text/javascript" src="{{ url_for('static',filename='js/gallery-color.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/genText.js') }}"></script>
+{% endblock %}
+
+{% endblock %}
+

@@ -1,0 +1,52 @@
+<!--  ayin-text-input.html -->
+{% extends "layout.html" %}
+{% block nav %}{% endblock %}
+{% block index1 %}{% endblock %}
+<style>
+	#container {
+		display: block;
+		max-width: 100% !important;
+	}
+</style>
+
+{% block content %}
+<div id="input">
+
+	<div id="new">
+		<p>Generate new text:</p>
+		<ul>
+			<li><a href="/gallery/embed/genesis">Genesis</a></li>
+			<li><a href="/gallery/embed/exodus">Exodus</a></li>
+			<li><a href="/gallery/embed/pikei_avot">Pikei Avot</a></li>
+		</ul>
+	</div>
+
+
+	<form method="POST" action="/gallery/paste">
+		Enter text
+		<br>
+		<style>
+			#enter-text {
+				height: 10%;
+				width: 40%;
+				min-width: 280px;
+				margin-bottom: 10px;
+			}
+		</style>
+		<textarea id="enter-text" type="text" name="text" ></textarea>
+		<input type="hidden" name="template" value="embed">
+		<br>
+		<input type="submit" value="Generate" class="generate">
+	</form> 
+	{% if error %} 
+		<p class="error">{{ error }}</p>
+	{% endif %}
+</div>
+
+<div id="loading" style="display:none">
+	<p>Loading...</p>
+</div>
+
+
+{% endblock %}
+

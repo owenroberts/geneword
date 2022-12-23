@@ -183,6 +183,18 @@ def text():
 	else:
 		return render_template("text-input.html")
 
+@app.route('/ayin_text')
+def ayin_text():
+	if request.method == 'GET' and 'title' in request.args:
+		return redirect( url_for('text', title = request.args['title'] ) )
+	else:
+		return render_template("ayin-text-input.html")
+
+@app.route('/gallery/embed/<title>')
+def ayin_text_embed(title):
+	new_text = gen.generate_text( gen.load_text_from_file( title ) )
+	return render_template("gallery-embed-text.html", title = title, new_text = new_text, show_back_btn = True)
+
 @app.route('/url')
 def from_url():
 	import urllib
@@ -216,8 +228,10 @@ def paste():
 	try:
 		title = "pasted"
 		new_text = gen.generate_text( request.form['text'] )
+		template = "gallery-embed-text.html" if request.form['template'] == 'embed' else "gallery-text.html"
+		print(request.form['template'],)
 		return render_template(
-			"gallery-text.html", title = title, new_text = new_text, show_back_btn = True
+			template, title = title, new_text = new_text, show_back_btn = True
 		)
 	except:
 		return render_template(
