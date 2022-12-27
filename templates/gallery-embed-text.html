@@ -1,4 +1,4 @@
-<!-- gallery-text.html -->
+<!-- gallery-embed-text.html -->
 {% extends "layout.html" %}
 {% block nav %}{% endblock %}
 
@@ -24,7 +24,19 @@
 </div>
 
 <div id="controls">
-	<button id="refresh">Refresh</button>
+	<style>
+		form { margin: 0 }
+	</style>
+	{% if is_pasted %}
+		<form method="POST" action="/gallery/paste">
+			<input type="hidden" name="text" value="{{ text }}" >
+			<input type="hidden" name="template" value="embed">
+			<input type="submit" value="Refresh" class="generate">
+		</form> 
+	{% else %}
+		<button id="refresh">Refresh</button>
+	{% endif %}
+
 	<button id="share-button">Share</button>
 	<button id="download">Download Image</button>
 </div>

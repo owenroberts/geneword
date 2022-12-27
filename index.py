@@ -229,9 +229,8 @@ def paste():
 		title = "pasted"
 		new_text = gen.generate_text( request.form['text'] )
 		template = "gallery-embed-text.html" if request.form['template'] == 'embed' else "gallery-text.html"
-		print(request.form['template'],)
 		return render_template(
-			template, title = title, new_text = new_text, show_back_btn = True
+			template, title = title, new_text = new_text, show_back_btn = True, is_pasted = True, text = request.form['text'] 
 		)
 	except:
 		return render_template(
