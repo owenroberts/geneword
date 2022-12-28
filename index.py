@@ -7,6 +7,8 @@ app = Flask(__name__, static_folder='static', static_url_path='')
 gen = geneword.Geneword()
 
 debug = os.environ.get('debug')
+app.config["TEMPLATES_AUTO_RELOAD"] = True
+print(app.config["TEMPLATES_AUTO_RELOAD"])
 
 @app.route('/')
 def index():

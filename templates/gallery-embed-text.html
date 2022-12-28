@@ -43,6 +43,11 @@
 
 <script type="text/javascript">
 	const title = "{{ title }}";
+
+	/* links open in new window */
+	const linkList = Array.from(document.getElementById('gallery').getElementsByTagName('a'));
+	linkList.forEach(a => a.target = "_blank");
+
 </script>
 {% include "share.html" %}
 
